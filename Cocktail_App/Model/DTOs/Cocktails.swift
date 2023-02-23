@@ -1,6 +1,6 @@
 import Foundation
 
-struct Coctail: Decodable{
+struct Cocktail: Decodable{
     var drinks: [Drinks]?
 }
 
@@ -24,11 +24,6 @@ struct Drinks: Decodable {
 //    let dateModified: String
 //
 //    enum CodingKeys: String, CodingKey {
-//        case id = "idDrink"
-//        case name = "strDrinks"
-//        case category = "strCategory"
-//        case instructions = "strInstructions"
 //        case imageURL = "strDrinkThumb"
-//        case dateModified = "dateModified"
 //    }
 //}

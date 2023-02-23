@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController {
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .tabBarColor
-        textField.isUserInteractionEnabled = false
+        textField.isUserInteractionEnabled = true
         return textField
     }()
     
@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController {
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .tabBarColor
-        textField.isUserInteractionEnabled = false
+        textField.isUserInteractionEnabled = true
         return textField
     }()
     
@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController {
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .tabBarColor
-        textField.isUserInteractionEnabled = false
+        textField.isUserInteractionEnabled = true
         return textField
     }()
     

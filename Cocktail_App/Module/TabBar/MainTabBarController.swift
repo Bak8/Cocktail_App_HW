@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController {
                        image: UIImage(systemName: "person")),
             generateVC(viewcontroller: CoctailsMenuViewController(),
                        image: UIImage(systemName: "house")),
-            generateVC(viewcontroller: CoctailViewController(),
+            generateVC(viewcontroller: GetDrinksViewController(),
                        image: UIImage(systemName: "cart"))
         ]
     }

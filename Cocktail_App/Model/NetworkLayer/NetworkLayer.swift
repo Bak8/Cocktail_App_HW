@@ -47,22 +47,22 @@ final class NetworkLayer {
         }
     }
     
-    func fetchDataByLetter(by letter: String) async throws -> Coctail {
+    func fetchDataByLetter(by letter: String) async throws -> Cocktail {
         var components = ApiType.fetchDrinksByLetter.components
         components.queryItems = [
             .init(name: "f", value: letter)
         ]
         guard let url = components.url else {
             print("URL is nil!")
-            return Coctail(drinks: [])
+            return Cocktail(drinks: [])
         }
         print(url)
         let (data, _) = try await URLSession.shared.data(from: url)
         return try await decodeData(data: data)
     }
     
-    func fetchAllCoctailsData() async throws -> Coctail {
-        var coctailsArray = Coctail(drinks: [])
+    func fetchAllCoctailsData() async throws -> Cocktail {
+        var coctailsArray = Cocktail(drinks: [])
         for letter in UnicodeScalar("a").value...UnicodeScalar("z").value {
             guard let currentLetter = UnicodeScalar(letter) else { break }
             print(currentLetter)

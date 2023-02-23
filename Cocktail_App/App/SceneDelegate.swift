@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -13,11 +14,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow (windowScene: windowScene)
-        window?.makeKeyAndVisible ()
-        window?.rootViewController = MainTabBarController ()
-    }
-
+        let window = UIWindow(windowScene: windowScene)
+        
+        if Auth.auth().currentUser == nil {
+            let vc = PhoneViewController ()
+            vc.title = "Sign In"
+            let navVc = UINavigationController (rootViewController: vc)
+            window.rootViewController = navVc
+        }
+        else {
+            window.rootViewController = MainTabBarController()
+        }
+        
+        window.makeKeyAndVisible()
+        self.window = window
+        
+//        window?.windowScene = windowScene
+//        window?.makeKeyAndVisible()
+////        window?.rootViewController = ViewController()
+//
+//        let navViewController = UINavigationController(rootViewController: viewController)
+//        window?.rootViewController = navViewController
+        
+        
+      }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
