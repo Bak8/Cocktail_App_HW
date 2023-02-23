@@ -8,7 +8,50 @@
 import UIKit
 import SnapKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITextFieldDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpUI()
+        nameField.delegate = self
+        dateOfBirthInformation.delegate = self
+        addressInformation.delegate = self
+        view.backgroundColor = .tabBarColor
+    }
+    
+    
+    func registerUser() {
+        guard let name = nameField.text,
+              let phone = dateOfBirthInformation.text,
+              let address = addressInformation.text,
+                !name.isEmpty && !phone.isEmpty && !address.isEmpty else { return }
+        
+        let newUser = User(name: name, phone: phone, address: address)
+        sendRegisterRequest(user: newUser)
+    }
+    
+    private func sendRegisterRequest(user: User) {
+        do {
+            let user = UserDefaultsService.shared.saveUser(user: user)
+        } catch {
+            print ("SOMETHING WRONG WITH USER DEFAULTS")
+        }
+        
+    }
+    
+    lazy var loginButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.backgroundColor = .tabBarItemLight
+            button.setTitle("Log In", for: .normal)
+            button.layer.cornerRadius = 6
+            button.setTitleColor(.tabBarColor, for: .normal)
+            button.addTarget(self, action: #selector(register), for: .touchUpInside)
+            return button
+        }()
+    
+        @objc func register() {
+            registerUser()
+        }
 
     lazy var profileTitle: UILabel = {
         var title = UILabel()
@@ -27,6 +70,7 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
+    
     lazy var profileImage: UIImageView = {
         var image = UIImageView()
         image.layer.cornerRadius = image.frame.width/2
@@ -41,15 +85,31 @@ class ProfileViewController: UIViewController {
     
     lazy var usernameLabel: UILabel = {
         var usernameLabel = UILabel()
-        usernameLabel.text = "User"
+        usernameLabel.text = UserDefaultsService.shared.name
         usernameLabel.font = UIFont(name: "Avenir", size: 33)
         usernameLabel.numberOfLines = 0
         return usernameLabel
     }()
     
-    lazy var emailInformation: UITextField = {
+    lazy var phoneLabel: UILabel = {
+        var phoneLabel = UILabel()
+        phoneLabel.text = UserDefaultsService.shared.phone
+        phoneLabel.font = UIFont(name: "Avenir", size: 33)
+        phoneLabel.numberOfLines = 0
+        return phoneLabel
+    }()
+    
+    lazy var adressLabel: UILabel = {
+        var adressLabel = UILabel()
+        adressLabel.text = UserDefaultsService.shared.address
+        adressLabel.font = UIFont(name: "Avenir", size: 33)
+        adressLabel.numberOfLines = 0
+        return adressLabel
+    }()
+    
+    lazy var nameField: UITextField = {
         var textField = UITextField()
-        textField.placeholder = "Email:"
+        textField.placeholder = "Enter Your Name:"
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .tabBarColor
@@ -77,21 +137,17 @@ class ProfileViewController: UIViewController {
         return textField
     }()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .tabBarColor
-        setUpUI()
-    }
-    
     private func setUpSubviews() {
         view.addSubview(borderView)
         view.addSubview(profileTitle)
         view.addSubview(profileImage)
         view.addSubview(usernameLabel)
-        view.addSubview(emailInformation)
+        view.addSubview(phoneLabel)
+        view.addSubview(adressLabel)
+        view.addSubview(nameField)
         view.addSubview(dateOfBirthInformation)
         view.addSubview(addressInformation)
+        view.addSubview(loginButton)
     }
     
     private func setUpConstraints() {
@@ -116,21 +172,36 @@ class ProfileViewController: UIViewController {
         }
     
         usernameLabel.snp.makeConstraints{ maker in
-            maker.top.equalTo(borderView).offset(110)
+            maker.top.equalTo(borderView.snp.bottom).offset(30)
             maker.left.equalTo(profileImage.snp.right).offset(15)
             maker.width.equalTo(115)
-            maker.height.equalTo(110)
+            maker.height.equalTo(40)
         }
         
-        emailInformation.snp.makeConstraints{ maker in
-            maker.top.equalTo(usernameLabel.snp.bottom).offset(65)
+        phoneLabel.snp.makeConstraints{ maker in
+            maker.top.equalTo(usernameLabel.snp.bottom).offset(10)
+            maker.left.equalTo(profileImage.snp.right).offset(15)
+            maker.width.equalTo(115)
+            maker.height.equalTo(40)
+        }
+
+        adressLabel.snp.makeConstraints{ maker in
+            maker.top.equalTo(phoneLabel.snp.bottom).offset(10)
+            maker.left.equalTo(profileImage.snp.right).offset(15)
+            maker.width.equalTo(115)
+            maker.height.equalTo(40)
+        }
+        
+        
+        nameField.snp.makeConstraints{ maker in
+            maker.top.equalTo(profileImage.snp.bottom).offset(65)
             maker.left.equalToSuperview().offset(30)
             maker.width.equalTo(310)
             maker.height.equalTo(45)
         }
         
         dateOfBirthInformation.snp.makeConstraints{ maker in
-            maker.top.equalTo(emailInformation.snp.bottom).offset(25)
+            maker.top.equalTo(nameField.snp.bottom).offset(25)
             maker.left.equalToSuperview().offset(30)
             maker.width.equalTo(310)
             maker.height.equalTo(45)
@@ -140,7 +211,13 @@ class ProfileViewController: UIViewController {
             maker.top.equalTo(dateOfBirthInformation.snp.bottom).offset(25)
             maker.left.equalToSuperview().offset(30)
             maker.width.equalTo(310)
-            maker.height.equalTo(110)
+            maker.height.equalTo(45)
+        }
+        loginButton.snp.makeConstraints{ maker in
+            maker.top.equalTo(addressInformation.snp.bottom).offset(20)
+            maker.left.equalToSuperview().offset(30)
+            maker.width.equalTo(310)
+            maker.height.equalTo(60)
         }
     }
     

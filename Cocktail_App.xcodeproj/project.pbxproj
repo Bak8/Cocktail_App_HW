@@ -48,6 +48,8 @@
 		6F479F4229A4DEAC008A2E1F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F479F4129A4DEAC008A2E1F /* ProfileViewController.swift */; };
 		6F479F4429A4DECF008A2E1F /* DetailedCocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F479F4329A4DECF008A2E1F /* DetailedCocktailViewController.swift */; };
 		6F479F4629A4E9EF008A2E1F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F479F4529A4E9EF008A2E1F /* UIColorExtension.swift */; };
+		6F85A66629A7FAAB00BE71DA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F85A66529A7FAAB00BE71DA /* UserDefaultsService.swift */; };
+		6F85A66829A7FB7200BE71DA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F85A66729A7FB7200BE71DA /* User.swift */; };
 		6FDF7B6129A3C0B6007B9F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDF7B6029A3C0B6007B9F4A /* AppDelegate.swift */; };
 		6FDF7B6329A3C0B6007B9F4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDF7B6229A3C0B6007B9F4A /* SceneDelegate.swift */; };
 		6FDF7B6529A3C0B6007B9F4A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDF7B6429A3C0B6007B9F4A /* MainViewController.swift */; };
@@ -76,6 +78,8 @@
 		6F479F4129A4DEAC008A2E1F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6F479F4329A4DECF008A2E1F /* DetailedCocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCocktailViewController.swift; sourceTree = "<group>"; };
 		6F479F4529A4E9EF008A2E1F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		6F85A66529A7FAAB00BE71DA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		6F85A66729A7FB7200BE71DA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6FDF7B5D29A3C0B6007B9F4A /* Cocktail_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktail_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FDF7B6029A3C0B6007B9F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FDF7B6229A3C0B6007B9F4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +202,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		6F85A66329A7FA8400BE71DA /* UserDefaultsServices */ = {
+			isa = PBXGroup;
+			children = (
+				6F85A66529A7FAAB00BE71DA /* UserDefaultsService.swift */,
+			);
+			path = UserDefaultsServices;
+			sourceTree = "<group>";
+		};
 		6FDF7B5429A3C0B6007B9F4A = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				6FDF7B7A29A3D11B007B9F4A /* Cocktails.swift */,
+				6F85A66729A7FB7200BE71DA /* User.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -277,6 +290,7 @@
 		6FDF7B7E29A3D94D007B9F4A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				6F85A66329A7FA8400BE71DA /* UserDefaultsServices */,
 				6F0B187F29A678A1006342AD /* AuthService */,
 				6F479F3E29A4DCB2008A2E1F /* TabBar */,
 				6FDF7B8129A3D98E007B9F4A /* DetailedCocktailWorkFlow */,
@@ -508,6 +522,7 @@
 				6FDF7B7D29A3D3BF007B9F4A /* NetworkLayer.swift in Sources */,
 				6F24D50429A51372009C7609 /* DetailedViewModel.swift in Sources */,
 				6FDF7B7B29A3D11B007B9F4A /* Cocktails.swift in Sources */,
+				6F85A66629A7FAAB00BE71DA /* UserDefaultsService.swift in Sources */,
 				6F0B188329A6801B006342AD /* Template.swift in Sources */,
 				6F24D50029A51266009C7609 /* MainCollectionViewCell.swift in Sources */,
 				6F0B189129A7DDA1006342AD /* SMSCodeViewController.swift in Sources */,
@@ -515,6 +530,7 @@
 				6F479F4229A4DEAC008A2E1F /* ProfileViewController.swift in Sources */,
 				6FDF7B8629A3DA2E007B9F4A /* MainViewModel.swift in Sources */,
 				6F0B188929A7CFFD006342AD /* AuthManager.swift in Sources */,
+				6F85A66829A7FB7200BE71DA /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
