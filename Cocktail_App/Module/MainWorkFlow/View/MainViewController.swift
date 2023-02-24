@@ -145,7 +145,7 @@ extension CoctailsMenuViewController: UICollectionViewDelegate {
                 coctailVC.coctail = drinks
                 print(coctailVC.coctail)
             })
-        navigationController?.pushViewController(coctailVC, animated: true)
+        navigationController?.present(coctailVC, animated: true)
     }
 }
 

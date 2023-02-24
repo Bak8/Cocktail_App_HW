@@ -12,6 +12,7 @@ import SnapKit
 import Kingfisher
 
 class MenuCollectionViewCell: UICollectionViewCell {
+
     
     var coctail: Drinks?
     
@@ -22,6 +23,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         productImage.contentMode = .scaleAspectFit
         productImage.layer.cornerRadius = 40
         productImage.clipsToBounds = true
+        productImage.isUserInteractionEnabled = true
         return productImage
     }()
     
@@ -49,6 +51,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         button.layer.shadowOpacity = 0.2
         return button
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

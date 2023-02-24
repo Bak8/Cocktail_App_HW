@@ -7,8 +7,11 @@
 
 import UIKit
 import SnapKit
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
+    
+    private let database = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +22,35 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .tabBarColor
     }
     
+    lazy var loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .tabBarItemLight
+        button.setTitle("Log In", for: .normal)
+        button.layer.cornerRadius = 6
+        button.setTitleColor(.tabBarColor, for: .normal)
+        button.addTarget(self, action: #selector(register), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func register() {
+        registerUser()
+    }
     
     func registerUser() {
         guard let name = nameField.text,
               let phone = dateOfBirthInformation.text,
               let address = addressInformation.text,
-                !name.isEmpty && !phone.isEmpty && !address.isEmpty else { return }
+              !name.isEmpty && !phone.isEmpty && !address.isEmpty else { return }
         
         let newUser = User(name: name, phone: phone, address: address)
         sendRegisterRequest(user: newUser)
+        
+        let object: [String:Any] = [
+            "name":"\(String(describing: nameField.text))" as NSObject,
+            "phone":"\(String(describing: dateOfBirthInformation.text))",
+            "address":"\(String(describing: addressInformation.text))"
+        ]
+        database.child("User \(Int.random(in:0..<100))").setValue(object)
     }
     
     private func sendRegisterRequest(user: User) {
@@ -38,20 +61,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
-    lazy var loginButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.backgroundColor = .tabBarItemLight
-            button.setTitle("Log In", for: .normal)
-            button.layer.cornerRadius = 6
-            button.setTitleColor(.tabBarColor, for: .normal)
-            button.addTarget(self, action: #selector(register), for: .touchUpInside)
-            return button
-        }()
-    
-        @objc func register() {
-            registerUser()
-        }
 
     lazy var profileTitle: UILabel = {
         var title = UILabel()
